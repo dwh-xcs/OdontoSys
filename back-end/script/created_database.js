@@ -1,1 +1,0 @@
-console.log('Database created successfully!');
