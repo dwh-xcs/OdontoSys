@@ -35,6 +35,5 @@ function queryData(table, codigo) {
 
 module.exports = { queryData };
 
-console.log("query.js carregado com sucesso!");
 // Exemplo de consulta na tabela dim_especialidade.
-queryData('dim_especialidade', 2);
+//queryData('dim_especialidade', 4);

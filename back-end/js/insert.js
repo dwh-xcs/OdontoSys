@@ -51,4 +51,4 @@ async function insertData(tb, values) {
 module.exports = { insertData };
 
 // Exemplo de inserção na tabela dim_especialidade.
-//insertData('dim_especialidade', [1, 'Especialidade Teste', 'Descrição Teste']);
+//insertData('dim_especialidade', [2, 'Especialidade Teste', 'Descrição Teste']);

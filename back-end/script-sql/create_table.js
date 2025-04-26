@@ -51,11 +51,10 @@ const dim_endereco = `
 )`;
 
 const dim_pessoa = `
-    
-    CREATE TABLE dim_pessoa (
+    CREATE TABLE IF NOT EXISTS dim_pessoa (
     cod_pessoa INTEGER PRIMARY KEY AUTOINCREMENT,
-    cod_especialidade TEXT,
-    cod_endereco TEXT,
+    cod_especialidade INTEGER,
+    cod_endereco INTEGER,
     nme_pessoa TEXT NOT NULL,
     dsc_cpf TEXT NOT NULL,
     dsc_restricao TEXT NOT NULL,
@@ -68,27 +67,26 @@ const dim_pessoa = `
     flg_funcao TEXT NOT NULL,
     dsc_status INTEGER DEFAULT 1,
 
-    FOREIGN KEY (cod_especialidade) REFERENCES especialidade(cod_especialidade),
-    FOREIGN KEY (cod_endereco) REFERENCES endereco(cod_endereco)
+    FOREIGN KEY (cod_especialidade) REFERENCES dim_especialidade(cod_especialidade),
+    FOREIGN KEY (cod_endereco) REFERENCES dim_endereco(cod_endereco)
 )`;
 
 const ft_agenda = `
-    
-    CREATE TABLE ft_agenda (
+    CREATE TABLE IF NOT EXISTS ft_agenda (
     cod_agenda INTEGER PRIMARY KEY AUTOINCREMENT,
     cod_pessoa INTEGER,
-    cod_procedimento INTEGER
+    cod_procedimento INTEGER,
     dsc_observacao TEXT,
     dsc_status INTEGER DEFAULT 1,
     dsc_data TEXT NOT NULL,
     tme_hora TEXT NOT NULL,
 
-    FOREIGN KEY (cod_pessoa) REFERENCES pessoa(cod_pessoa),
-    FOREIGN KEY (cod_procedimento) REFERENCES procedimento(cod_procedimento))
-`;
+    FOREIGN KEY (cod_pessoa) REFERENCES dim_pessoa(cod_pessoa),
+    FOREIGN KEY (cod_procedimento) REFERENCES dim_procedimento(cod_procedimento)
+)`;
 
 // Lista de tabelas a serem criadas.
-const list_table = [dim_procedimento, dim_especialidade, dim_endereco, dim_pessoa, ft_agenda]
+const list_table = [dim_especialidade, dim_endereco, dim_pessoa, dim_procedimento, ft_agenda]
 
 // Loop para criar as tabelas no banco de dados.
 for (let i = 0; i < list_table.length; i++) {

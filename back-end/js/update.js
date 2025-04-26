@@ -1,44 +1,35 @@
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
+const { createConnection, closeConnection } = require('../script-sql/connection.js');
+const { queryData } = require('./query.js');
 
-// Caminho do banco de dados
-const dbPath = path.resolve(__dirname, '..', 'sqlite3', 'odonto_sys.db');
+// Documentação:
+// Função para atualizar dados em uma tabela específica no banco de dados.
+// A função recebe o nome da tabela, um código específico para identificar o registro a ser atualizado, o nome da coluna a ser atualizada e os novos valores.
+// Com o nome da tabela, a função constrói o nome da coluna correspondente e executa uma consulta SQL para atualizar os dados filtrados.
 
-// Criar conexão com o banco de dados
-const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) {
-    console.error('Erro ao abrir o banco de dados:', err.message);
-  } else {
-    console.log('Banco de dados conectado com sucesso!');
-  }
-});
+async function updateData(table, codigo, column, values) {
+  // Criar conexão com o banco de dados.
+  const db = createConnection();
 
-const queryData = () => {
-  db.all('SELECT * FROM especialidade', (err, rows) => {
-    if (err) {
-      console.error('Erro ao consultar dados:', err.message);
-    } else {
-      console.log('Especialidades encontradas:', rows);
-    }
-  });
-};
+  // Construir o nome da coluna.
+  const coluna = `cod_${table.split("_")[1]}`;
 
-const updateData = (id, newDescricao) => {
-  const sql = `UPDATE especialidade SET dsc_descricao = 'Nova descrição para a especialidade' WHERE cod_especialidade = 1`;
-  const values = [newDescricao, id];
+  // Consulta SQL com placeholders para evitar injeção de SQL.
+  const sql = `UPDATE ${table} SET ${column} = ? WHERE ${coluna} = ?`;
 
-  db.run(sql, values, function (err) {
+  // Executar a consulta.
+  db.run(sql, [values, codigo], function (err) {
     if (err) {
       console.error('Erro ao atualizar dados:', err.message);
     } else {
       console.log(`Dados atualizados com sucesso! Linhas afetadas: ${this.changes}`);
+      // Consultar os dados atualizados.
+      queryData(table, codigo);
     }
+
+    // Fechar a conexão após a execução.
+    closeConnection(db);
   });
-};
+}
 
-// Executar as funções
-queryData();
-updateData(1, 'Nova descrição para a especialidade');
-
-// Fechar a conexão após as operações
-db.close();
+// Exemplo de atualização na tabela dim_especialidade.
+//updateData('dim_especialidade', 2, 'dsc_especialidade', 'especialidade 1');
