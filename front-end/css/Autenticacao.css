@@ -1,0 +1,117 @@
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(315deg, #BD9780 4%, #CAAD83 59%);
+  z-index: 0;
+}
+
+.background-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 176px;
+  z-index: 1;
+}
+
+.rotated-box {
+  width: 469px;
+  height: 870.69px;
+  position: absolute;
+  left: 20%;
+  top: 75%;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  background: linear-gradient(315deg, #E0D8CD 45%, #FFF4EC 87%);
+  border-radius: 12px;
+  z-index: 2;
+}
+
+.auth-box {
+  width: 470px;
+  max-width: 90%;
+  height: 380px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background:linear-gradient(315deg, #E0D8CD 45%, #FFF4EC 87%);
+  border-radius: 20px;
+  padding: 30px;
+  z-index: 3;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.auth-text {
+  text-align: center;
+  color: #555;
+  font-size: 16px;
+  margin-bottom: 30px;
+  opacity: 0.8;
+}
+
+.code-inputs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.code-box {
+  width: 50px;
+  height: 60px;
+  font-size: 28px;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  background: #F7F3F0;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+  outline: none;
+}
+
+.send-button {
+  width: 100%;
+  max-width: 420px;
+  padding: 15px;
+  background-color: #BD9780;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.send-button:hover {
+  background-color: #a57767;
+}
