@@ -17,7 +17,7 @@ function insertData(tb, values) {
 
   const info = {
     'ft_agenda': ['cod_agenda', 'cod_pessoa', 'cod_procedimento', 'dsc_observacao', 'dsc_status', 'dsc_data', 'tme_hora'],
-    'dim_endereco': ['cod_enderec', 'dsc_rua', 'cod_cep', 'dsc_numero', 'dsc_complemento'],
+    'dim_endereco': ['cod_endereco', 'dsc_rua', 'cod_cep', 'dsc_numero', 'dsc_complemento'],
     'dim_especialidade': ['cod_especialidade', 'dsc_especialidade', 'dsc_descricao'],
     'dim_pessoa': [
       'cod_pessoa', 'cod_especialidade', 'cod_endereco', 'nme_pessoa', 'nme_sobrenome', 
