@@ -24,7 +24,7 @@ const queryData = () => {
 };
 
 const updateData = (id, newDescricao) => {
-  const sql = `UPDATE especialidade SET dsc_descricao = ? WHERE cod_especialidade = ?`;
+  const sql = `UPDATE especialidade SET dsc_descricao = 'Nova descrição para a especialidade' WHERE cod_especialidade = 1`;
   const values = [newDescricao, id];
 
   db.run(sql, values, function (err) {

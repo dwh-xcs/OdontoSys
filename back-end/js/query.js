@@ -1,21 +1,12 @@
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
+const { getTableColumns } = require('./utils');
+const { createConnection, closeConnection } = require('./conection.js');
 
 function queryData(table, codigo) {
-  // Caminho do banco de dados
-  const dbPath = path.resolve(__dirname, '..', 'sqlite3', 'odonto_sys.db');
-
-  // Criar conexão com o banco de dados
-  const db = new sqlite3.Database(dbPath, (err) => {
-    if (err) {
-      console.error('Erro ao abrir o banco de dados:', err.message);
-      return;
-    }
-    console.log('Banco de dados conectado com sucesso!');
-  });
+  // Criar conexão com o banco de dados.
+  const db = createConnection();
 
   // Construir o nome da coluna
-  const coluna = `cod_${table.split("_")[0]}`;
+  const coluna = `cod_${table.split("_")[1]}`;
 
   // Consulta ao banco de dados
   const query = `SELECT * FROM ${table} WHERE ${coluna} = ?`;
@@ -27,16 +18,9 @@ function queryData(table, codigo) {
       console.log(`${table} encontrados:`, rows);
     }
 
-    // Fechar a conexão após a consulta
-    db.close((closeErr) => {
-      if (closeErr) {
-        console.error('Erro ao fechar o banco de dados:', closeErr.message);
-      } else {
-        console.log('Conexão com o banco de dados fechada.');
-      }
-    });
+  // Fecha a conexão com o banco de dados.
+  closeConnection(db);
   });
 }
 
-// Exemplo de uso
-queryData("especialidade", 1);
+module.exports = queryData;
