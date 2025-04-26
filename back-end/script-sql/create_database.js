@@ -22,6 +22,8 @@ const createDatabase = () => {
   const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
       console.error('Erro ao criar o banco de dados:', err.message);
+    } else {
+      console.log('Banco de dados criado com sucesso!');
     }
   });
 

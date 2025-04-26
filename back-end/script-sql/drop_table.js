@@ -2,7 +2,7 @@
 
 // Function to drop the table.
 // Importar as funções
-const { createConnection, closeConnection } = require('./conection.js');
+const { createConnection, closeConnection } = require('./connection.js');
 
 // Criar conexão.
 const db = createConnection();

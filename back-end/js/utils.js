@@ -1,7 +1,7 @@
 // Arquivo: contém funções utilitárias para o sistema.
 
 // Conection Database.
-const {createConnection, closeConnection} = require('./conection.js');
+const { createConnection, closeConnection } = require('../script-sql/connection.js');
 
 // Função para obter os nomes das colunas de uma tabela específica.
 async function getTableColumns(tb) {
@@ -20,4 +20,4 @@ async function getTableColumns(tb) {
   closeConnection();
 }
 
-module.exports = getTableColumns;
+module.exports = { getTableColumns };

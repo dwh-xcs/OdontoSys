@@ -1,7 +1,7 @@
 // Script para criar as tabelas para o sistema OdontoSys.
 
 // Conection Database.
-const {createConnection, closeConnection} = require('./conection.js');
+const {createConnection, closeConnection} = require('./connection.js');
 
 // Cria a tabela no banco de dados.
 function createTables(sql) {
