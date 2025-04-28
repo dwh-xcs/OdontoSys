@@ -13,7 +13,7 @@ body, html {
 .background {
   width: 100vw;
   height: 100vh;
-  background: url('front-end/img/3.png') no-repeat left center/cover, #d8b998;
+  background: url('img/3_.png') no-repeat left center/cover, #d8b998;
   display: flex;
   align-items: center;
   justify-content: center;
