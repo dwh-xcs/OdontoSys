@@ -1,42 +1,39 @@
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
+const { getTableColumns } = require('./utils');
+const { createConnection, closeConnection } = require('../script-sql/connection.js');
+
+// Documentação:
+// Função para consultar dados de uma tabela específica no banco de dados.
+// A função recebe o nome da tabela e um código específico para filtrar os dados.
+// Com o nome da tabela, a função constrói o nome da coluna correspondente e executa uma consulta SQL para obter os dados filtrados.
+// A consulta é feita utilizando o método `db.all`, que retorna todos os resultados correspondentes à consulta.
 
 function queryData(table, codigo) {
-  // Caminho do banco de dados
-  const dbPath = path.resolve(__dirname, '..', 'sqlite3', 'odonto_sys.db');
+  // Criar conexão com o banco de dados.
+  const db = createConnection();
 
-  // Criar conexão com o banco de dados
-  const db = new sqlite3.Database(dbPath, (err) => {
-    if (err) {
-      console.error('Erro ao abrir o banco de dados:', err.message);
-      return;
-    }
-    console.log('Banco de dados conectado com sucesso!');
-  });
+  // Construir o nome da coluna.
+  const coluna = `cod_${table.split("_")[1]}`;
 
-  // Construir o nome da coluna
-  const coluna = `cod_${table.split("_")[0]}`;
-
-  // Consulta ao banco de dados
+  // Consulta ao banco de dados.
   const query = `SELECT * FROM ${table} WHERE ${coluna} = ?`;
 
   db.all(query, [codigo], (err, rows) => {
     if (err) {
       console.error('Erro ao consultar dados:', err.message);
     } else {
-      console.log(`${table} encontrados:`, rows);
-    }
-
-    // Fechar a conexão após a consulta
-    db.close((closeErr) => {
-      if (closeErr) {
-        console.error('Erro ao fechar o banco de dados:', closeErr.message);
+      if (rows.length > 0) {
+        console.log(`Resultado para a tabela: ${table}`);
+        console.table(rows);
       } else {
-        console.log('Conexão com o banco de dados fechada.');
+        console.log('\x1b[33m%s\x1b[0m', `⚠️  Nenhum resultado encontrado para ${table} com código ${codigo}.`);
       }
-    });
+    }
+    // Fecha a conexão com o banco de dados.
+    closeConnection(db);
   });
 }
 
-// Exemplo de uso
-queryData("especialidade", 1);
+module.exports = { queryData };
+
+// Exemplo de consulta na tabela dim_especialidade.
+//queryData('dim_especialidade', 4);
