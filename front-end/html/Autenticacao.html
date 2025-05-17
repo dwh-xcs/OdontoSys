@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Autenticação</title>
+  <link rel="stylesheet" href="css/Autenticacao.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Fundo com gradiente de cor -->
+    <div class="gradient-bg"></div>
+
+    <!-- Imagem de fundo -->
+    <img class="background-img" src="css/img/3_.png" alt="Imagem de fundo" />
+
+    <!-- Caixa rotacionada para efeito visual -->
+    <div class="rotated-box"></div>
+
+    <!-- Caixa de autenticação -->
+    <div class="auth-box">
+      <div class="auth-title">Autenticação</div>
+      <div class="auth-text">Por favor, insira o código para realizar a verificação.</div>
+
+      <!-- Campos para inserção do código de autenticação -->
+      <div class="code-inputs">
+        <input type="text" maxlength="1" class="code-box" />
+        <input type="text" maxlength="1" class="code-box" />
+        <input type="text" maxlength="1" class="code-box" />
+        <input type="text" maxlength="1" class="code-box" />
+      </div>
+
+      <!-- Botão para enviar o código preenchido -->
+      <button class="send-button">Enviar</button>
+    </div>
+  </div>
+
+  <!-- Script para controlar o comportamento dos campos de código -->
+  <script>
+    // Seleciona todos os inputs de código
+    const inputs = document.querySelectorAll('.code-box');
+  
+    // Adiciona evento de input para mover o foco para o próximo campo ao digitar
+    inputs.forEach((input, index) => {
+      input.addEventListener('input', (e) => {
+        const value = e.target.value;
+        if (value.length === 1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+  
+      // Adiciona evento de tecla para voltar ao campo anterior ao pressionar "Backspace"
+      input.addEventListener('keydown', (e) => {
+        if (e.key === "Backspace" && input.value === '' && index > 0) {
+          inputs[index - 1].focus();
+        }
+      });
+    });
+  </script>  
+</body>
+</html>

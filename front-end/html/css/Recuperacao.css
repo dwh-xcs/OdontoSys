@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+}
+
+.background {
+  width: 100vw;
+  height: 100vh;
+  background: url('img/3_.png') no-repeat left center/cover, #d8b998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #3e2f25;
+}
+
+.radio-group {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  font-size: 0.95rem;
+  color: #6e5c4c;
+}
+
+.radio-group input[type="radio"] {
+  margin-right: 5px;
+}
+
+.message {
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+label {
+  font-size: 0.9rem;
+  color: #3e2f25;
+  margin-bottom: 5px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+button {
+  padding: 12px;
+  background-color: #c9a88c;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #a77d5f;
+}

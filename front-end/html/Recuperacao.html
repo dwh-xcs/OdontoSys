@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recuperar Senha</title>
+  <link rel="stylesheet" href="css/Recuperacao.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- Fundo principal da página -->
+  <div class="background">
+
+    <!-- Container central para alinhar o conteúdo -->
+    <div class="container">
+
+      <!-- Caixa do formulário de recuperação de senha -->
+      <div class="form-box">
+
+        <!-- Título da página/formulário -->
+        <h2>Recuperar Senha</h2>
+
+        <!-- Grupo de opções para escolha do método de recuperação -->
+        <div class="radio-group">
+          <label for="email-option">
+            <input type="radio" name="metodo" id="email-option" value="email" checked> E-mail
+          </label>
+          <label for="celular-option">
+            <input type="radio" name="metodo" id="celular-option" value="celular"> Celular
+          </label>
+        </div>
+
+        <!-- Mensagem informando o envio do código de verificação -->
+        <div class="message">Um código de verificação foi enviado para o seu e-mail.</div>
+
+        <!-- Campo de entrada para digitar o e-mail -->
+        <label for="email-input">E-mail</label>
+        <input type="text" id="email-input" name="email" placeholder="E-mail" />
+
+        <!-- Botão para enviar o pedido de recuperação -->
+        <button>Enviar</button>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

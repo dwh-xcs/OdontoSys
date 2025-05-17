@@ -1,0 +1,16 @@
+/*
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Rodar com input",
+        "program": "${workspaceFolder}/Login.js",
+        // esta linha faz com que o debugging use o terminal integrado,
+        // e não o Debug Console:
+        "console": "integratedTerminal"
+      }
+    ]
+  }
+ */ 
